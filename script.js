@@ -1,9 +1,12 @@
-
-    // Retrieve and display the current date
-    $('#currentDay').text(moment().format("dddd, MMMM Do YYYY"));
-    // Retrieve and display the current hour (Need to refresh the page to update it)
-    $('#currentHour').text(moment().format("LT"));
-
+    
+    // call displayCurrentDate function
+    displayCurrentDate();
+    
+    // Call the displayCurrentDate function every 60 secs
+    setInterval( () => {
+        displayCurrentDate();
+    },60000)
+    
     var hourBlock = ['09AM','10AM','11AM','12PM','01PM','02PM','03PM','04PM','05PM'];
 
     var hourValue = ['9','10','11','12','13','14','15','16','17'];
@@ -48,6 +51,14 @@
      *  function--------------------------------------------------------
      */
 
+    // display current date and current hour
+    function displayCurrentDate () {
+        // Retrieve and display the current date
+        $('#currentDay').text(moment().format("dddd, MMMM Do YYYY"));
+        // Retrieve and display the current hour (Need to refresh the page to update it)
+        $('#currentHour').text(moment().format("LT"));
+    }
+
     // save the hourly task to local storage
     function populateStorage(key, value) {
         localStorage.setItem(key , value);
@@ -72,3 +83,5 @@
             $(`[data-value = ${+hourValue[i]}]`).addClass('bg-secondary text-white');
         }
     }
+
+    
